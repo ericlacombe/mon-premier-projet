@@ -8,10 +8,10 @@ En tant que développeur Python, vous êtes sollicité pour concevoir l'API REST
 
 ## Contraintes
 Pour le projet, il est nécessaire d'utiliser les technologies suivantes.
-    • Langage: Python.
-    • Framework backend: Flask.
-    • Base de données : SQLite avec SQLAlchemy comme ORM.
-    • Authentification: JWT (JSON Web Tokens). On stockera les utilisateurs dans une table SQL.
+	• Langage: Python.
+	• Framework backend: Flask.
+	• Base de données : SQLite avec SQLAlchemy comme ORM.
+	• Authentification: JWT (JSON Web Tokens). On stockera les utilisateurs dans une table SQL.
 
 ## Fonctionnalités
 ### Gestion des utilisateurs
