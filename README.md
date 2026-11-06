@@ -25,3 +25,15 @@
 
 Liens : Utilisateur 1—N Commande · Categorie 1—N Produit · Produit 1—N LigneCommande · Commande 1—N LigneCommande
 (détail complet dans `etape3-objets.md`, schéma ER + PK/FK/UK)
+
+## Fichiers du projet (étapes 0–3)
+| Fichier | Description |
+|---|---|
+| `attentes.md` | Cahier des charges de l'exercice (DigiMarket) |
+| `methodologie.md` | Méthode de travail en 6 étapes + 3 niveaux (🥉🥈🥇) |
+| `methodologie-canva.mmd` | Schéma visuel (Mermaid) de la méthode |
+| `etape0-AFB.md` | Étape 0 : liste des besoins 🔵 et contraintes 🟠 |
+| `etape1-use-cases.md` | Étape 1 : acteurs, cas d'utilisation, matrice des rôles |
+| `etape2-fonctions-metier.md` | Étape 2 : fonctions métier F1–F4 + flux « Passer une commande » |
+| `etape3-objets.md` | Étape 3 : schéma ER (5 objets, PK/FK/UK), cycle de vie de Commande |
+| `README.md` | Ce fichier |
