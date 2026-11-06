@@ -205,6 +205,14 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 
 💡 **Explications du Groupe B** :
 - **4.7** — le **contrat d'API** = tableau de chaque route (méthode HTTP, chemin, entrées JSON, sorties JSON, codes de retour). Analogie : une route = un guichet avec un panneau (méthode) et un formulaire (entrées).
+
+  **La condition de la partie 4.7 : « le système est une API »**
+
+  | Situation | Faut-il créer des routes API ? | Pourquoi |
+  |---|---|---|
+  | Le système doit être **appelé par d'autres programmes** (site web, appli mobile, autre service) via HTTP | ✅ **oui** | L'API = le contrat d'accès : chaque cas d'utilisation devient une route (`POST /api/auth/register`…) |
+  | Le système est **autonome / local** : script, outil en ligne de commande, appli desktop seule, traitement batch (produit un fichier, un rapport) | ❌ **non** | L'interface, c'est le terminal/la console, pas HTTP. Des fonctions Python suffisent — créer une API serait du code inutile |
+
 - **4.8** — une **fonction métier** n'est PAS une fonction Python : c'est un regroupement. Le module créé (ex. `auth.py`) contient routes + fonctions Python qui la réalisent ensemble.
 - **4.9** — fonction Python « pure » : mêmes entrées → même sortie, sans effet de bord persistant (ex. `calculer_total(lignes)`).
 - **4.10** — codes : `400` invalide, `401` non authentifié, `403` rôle insuffisant, `404` introuvable, `409` conflit (ex. email pris). Chaque branche d'erreur du flux de l'étape 2 devient un gestionnaire.
