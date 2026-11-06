@@ -2,6 +2,8 @@
 
 > **Changelog** — v1.0 : première version (étapes 0–6). v1.1 : niveaux 🥉🥈🥇 dès l'étape 4 ; bonnes pratiques intégrées dans chaque étape ; glossaire, schéma Mermaid, Definition of Ready, signaux d'alerte. v1.2 : pédagogie — fil rouge concret, analogies, auto-évaluation (3 questions/étape), « à retenir en 3 lignes », temps estimés, pré-requis, faux bons résultats.
 
+> ⚠️ **Ne pas confondre** : les *étapes du projet* (dans `attentes.md` : 1 = utilisateurs/auth, 2 = produits, 3 = commandes) ≠ les *étapes de la méthode* (0–6, dans ce fichier). Correspondance : niveau 🥉 = étape projet 1 (auth), 🥈 = étape projet 2 (produits), 🥇 = étape projet 3 (commandes).
+
 ## Pré-requis (à savoir avant de commencer)
 - **Python de base** : variables, fonctions, classes, `import` ;
 - **HTTP de base** : requête/réponse, méthodes (GET, POST…), JSON ;
@@ -352,6 +354,7 @@ flowchart TD
 | **Objet** | Une chose du système (Commande, Produit) avec attributs et parfois un état | Un personnage avec ses caractéristiques |
 | **État** | La « situation » d'un objet à un moment T (en_attente, validée) | L'humeur du personnage à ce moment |
 | **Persistance** | Conserver des données au-delà d'une requête, même après redémarrage → base | Le cahier (on écrit pour de bon) vs le brouillon jetable |
+| **Schéma ER** | Schéma Entité-Relation : les tables (objets) et leurs liens (1—N…) | Le plan de la base de données |
 | **Route** | Point d'entrée HTTP de l'API (ex. POST /api/auth/login) | Un guichet avec un panneau (méthode) et un formulaire (entrées) |
 | **Blueprint** | Regroupement de routes Flask par domaine | Un guichetier dédié à un service |
 | **Contrat d'API** | Tableau de toutes les routes : méthodes, entrées, sorties, codes | Le règlement affiché à l'entrée |
