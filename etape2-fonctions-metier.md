@@ -65,7 +65,7 @@ flowchart TB
 flowchart TD
     START([Client appelle POST /api/commandes<br/>avec son token JWT]) --> AUTH{Token valide ?}
     AUTH -- non --> E401([401 : non authentifié])
-    AUTH -- oui --> ROLE{Rôle = client ou admin ?}
+    AUTH -- oui --> ROLE{"Rôle = client ou admin ?<br/>(garde-fou : tout rôle inconnu → 403)"}
     ROLE -- non --> E403([403 : accès interdit])
     ROLE -- oui --> DATA{Lecture du JSON :<br/>adresse + lignes produit_id/quantité valides ?}
     DATA -- non --> E400a([400 : requête invalide])
@@ -74,6 +74,8 @@ flowchart TD
     STOCK -- oui --> CREATE[Créer l'objet Commande<br/>état = en_attente<br/>+ ses lignes en base]
     CREATE --> RESP([201 : commande créée,<br/>retour JSON de la commande])
 ```
+
+💡 Le `403` est un **garde-fou** : avec seulement 2 rôles (client, admin) et un token obligatoire, la branche « non » est normalement inatteignable — mais elle protège si un jour un rôle inconnu/invalide apparaît (bonne pratique : jamais de confiance aveugle côté serveur).
 
 ---
 
