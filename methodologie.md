@@ -112,8 +112,9 @@ Deux outils, dans cet ordre :
 ⏱️ **~1 h — moyenne**
 
 **Question** : quels **OBJETS** sont créés/manipulés, avec quels liens et quels états ?
+**Rappel** : un **objet** = une **chose** avec des **attributs** (données) et peut-être un **état**. La fonction métier agit sur l'objet.
 Deux outils :
-1. **Modèle de données (schéma ER)** : objets + liens — ex. Utilisateur 1—N Commandes.
+1. **Modèle de données (schéma ER)** : objets + liens — ex. Utilisateur 1—N Commandes. Dans le schéma ER, chaque attribut a un rôle : **PK** (clé primaire, id unique), **FK** (clé étrangère, lien 1—N vers une autre table), **UK** (valeur unique, ex. email).
 2. **Cycle de vie (state diagram)** : pour chaque objet à états, les états et **quelle fonction métier déclenche chaque transition**.
 **Question clé par objet** : *« cet objet doit-il être persisté ? »* (analogie : cahier = persisté, brouillon jetable = temporaire) — prépare le 4.1.
 👉 **Sortie** : liste des objets avec attributs, liens, états.
@@ -125,7 +126,9 @@ Deux outils :
 
 ⚠️ **Piège** : créer des objets « au cas où », ou oublier l'état d'un objet qui en a un.
 
-🧰 **Bonnes pratiques à ce stade** : commit Git de l'étape 3 (message clair).
+🧰 **Bonnes pratiques à ce stade** :
+- tenir à jour la **« structure du projet »** dans le README : liste des fichiers créés jusqu'à cette étape (étape 3 incluse) ;
+- commit Git de l'étape 3 (message clair).
 
 🧵 **Fil rouge** : l'objet **Utilisateur** est créé par F1 ; attributs : email (unique), mot de passe (haché), nom… ; **persisté** (cahier) ; pas de cycle de vie.
 ❓ **Auto-évaluation** : 1) Utilisateur est-il persisté ou temporaire ? Pourquoi ? 2) Citez un objet avec un état. 3) Qui déclenche chaque transition d'état ?
@@ -354,7 +357,8 @@ flowchart TD
 | **Objet** | Une chose du système (Commande, Produit) avec attributs et parfois un état | Un personnage avec ses caractéristiques |
 | **État** | La « situation » d'un objet à un moment T (en_attente, validée) | L'humeur du personnage à ce moment |
 | **Persistance** | Conserver des données au-delà d'une requête, même après redémarrage → base | Le cahier (on écrit pour de bon) vs le brouillon jetable |
-| **Schéma ER** | Schéma Entité-Relation : les tables (objets) et leurs liens (1—N…) | Le plan de la base de données |
+| **Schéma ER** | Schéma Entité-Relation : les tables (objets) et leurs liens (1—N…) ; attributs avec PK/FK/UK | Le plan de la base de données |
+| **PK / FK / UK** | Clé primaire (id unique) / clé étrangère (lien vers une autre table) / valeur unique | N° de sécu unique / on cite le n° de quelqu'un d'autre / email unique |
 | **Route** | Point d'entrée HTTP de l'API (ex. POST /api/auth/login) | Un guichet avec un panneau (méthode) et un formulaire (entrées) |
 | **Blueprint** | Regroupement de routes Flask par domaine | Un guichetier dédié à un service |
 | **Contrat d'API** | Tableau de toutes les routes : méthodes, entrées, sorties, codes | Le règlement affiché à l'entrée |
