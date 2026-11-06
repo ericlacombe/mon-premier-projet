@@ -1,6 +1,6 @@
 # Méthodologie de préparation (avant de coder) — étapes 0 à 6
 
-> **Changelog** — v1.0 : première version (étapes 0–6). v1.1 : niveaux 🥉🥈🥇 dès l'étape 4 ; bonnes pratiques intégrées dans chaque étape ; glossaire, schéma Mermaid, Definition of Ready, signaux d'alerte. v1.2 : pédagogie — fil rouge concret, analogies, auto-évaluation (3 questions/étape), « à retenir en 3 lignes », temps estimés, pré-requis, faux bons résultats.+ cycle de vie du README
+> **Changelog** — v1.0 : première version (étapes 0–6). v1.1 : niveaux 🥉🥈🥇 dès l'étape 4 ; bonnes pratiques intégrées dans chaque étape ; glossaire, schéma Mermaid, Definition of Ready, signaux d'alerte. v1.2 : pédagogie — fil rouge concret, analogies, auto-évaluation (3 questions/étape), « à retenir en 3 lignes », temps estimés, pré-requis, faux bons résultats.
 
 ## Pré-requis (à savoir avant de commencer)
 - **Python de base** : variables, fonctions, classes, `import` ;
@@ -134,17 +134,20 @@ Deux outils :
 ## BOUCLE PAR NIVEAU — à répéter 3 fois (🥉 → 🥈 → 🥇)
 
 Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À partir d'ici, on exécute les étapes 4, 5, 6 **en boucle, une fois par niveau** :
+
+```
 ┌─ NIVEAU 🥉 DÉBUTANT ─────────────────────────────┐
 │ étape 4 (parties 🥉) → étape 5 (tests 🥉) → étape 6   │
 │ → backlog 🥉 → CODE de l'incrément → DoD ✅            │
 └────────────────────────────────────────────────────┘
-│  le code 🥉 reste fonctionnel
-▼
+        │  le code 🥉 reste fonctionnel
+        ▼
 ┌─ NIVEAU 🥈 INTERMÉDIAIRE ── même boucle, parties 🥈 ──┐
 └────────────────────────────────────────────────────────┘
-▼
+        ▼
 ┌─ NIVEAU 🥇 CONFIRMÉ ──────── même boucle, tout ────────┐
 └────────────────────────────────────────────────────────┘
+```
 
 **Règle** : on ne passe au niveau suivant que quand le niveau courant respecte sa **Definition of Done** (code ✅ + test ✅ + doc ✅ + commit ✅). Le code d'un niveau **reste fonctionnel** quand on ajoute le suivant.
 
@@ -310,15 +313,18 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 ---
 
 ## Ordre visuel récapitulatif
+
+```
 cahier des charges
-│ (0) AFB   (1) use cases   (2) fonctions MÉTIER   (3) objets
-│          ← étapes 0-3 faites UNE SEULE FOIS, globalement
-▼
+  │ (0) AFB   (1) use cases   (2) fonctions MÉTIER   (3) objets
+  │          ← étapes 0-3 faites UNE SEULE FOIS, globalement
+  ▼
 ┌─ BOUCLE ×3 : 🥉 DÉBUTANT → 🥈 INTERMÉDIAIRE → 🥇 CONFIRMÉ ──┐
 │  à chaque niveau :                                                │
 │   (4) conception du niveau  →  (5) tests du niveau  →            │
 │   (6) backlog du niveau → CODE incrémental → DoD ✅               │
 └───────────────────────────────────────────────────────────────────┘
+```
 
 Version graphique (Mermaid) :
 
@@ -331,6 +337,11 @@ flowchart TD
     E3 --> B1["🥉 NIVEAU DÉBUTANT<br/>4: 4.1 4.5 4.7 4.8 4.10<br/>5: 1 test unitaire<br/>6: backlog 🥉 → CODE → DoD ✅"]
     B1 --> B2["🥈 NIVEAU INTERMÉDIAIRE<br/>4: + 4.3 4.4 4.6 4.11<br/>5: + intégration<br/>6: backlog 🥈 → CODE → DoD ✅"]
     B2 --> B3["🥇 NIVEAU CONFIRMÉ<br/>4: 4.1 à 4.11 toutes<br/>5: + régression<br/>6: backlog 🥇 → CODE → DoD ✅"]
+```
+
+---
+
+## Glossaire (avec analogies du quotidien)
 
 | Terme | Définition simple | Analogie |
 |---|---|---|
@@ -352,6 +363,3 @@ flowchart TD
 | **Definition of Ready** | Avant une étape : le livrable précédent existe et est commité | On ne monte pas sur scène sans le décor précédent |
 | **Commit** | Sauvegarde datée du code dans Git, avec un message clair | Une photo de la scène avec la date |
 | **Traçabilité** | Chaque élément vient de l'étape précédente (besoin → cas → route → test → commit) | Chaque réplique trouve sa source dans le scénario |
-Traçabilité
-Chaque élément vient de l'étape précédente (besoin → cas → route → test → commit)
-Chaque réplique trouve sa source dans le scénario
