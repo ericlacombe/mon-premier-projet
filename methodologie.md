@@ -1,6 +1,6 @@
 # Méthodologie de préparation (avant de coder) — étapes 0 à 6
 
-> **Changelog** — v1.0 : première version (étapes 0–6). v1.1 : niveaux 🥉🥈🥇 dès l'étape 4 ; bonnes pratiques intégrées dans chaque étape ; glossaire, schéma Mermaid, Definition of Ready, signaux d'alerte. v1.2 : pédagogie — fil rouge concret, analogies, auto-évaluation (3 questions/étape), « à retenir en 3 lignes », temps estimés, pré-requis, faux bons résultats.
+> **Changelog** — v1.0 : première version (étapes 0–6). v1.1 : niveaux 🥉🥈🥇 dès l'étape 4 ; bonnes pratiques intégrées dans chaque étape ; glossaire, schéma Mermaid, Definition of Ready, signaux d'alerte. v1.2 : pédagogie — fil rouge concret, analogies, auto-évaluation (3 questions/étape), « à retenir en 3 lignes », temps estimés, pré-requis, faux bons résultats.+ cycle de vie du README
 
 ## Pré-requis (à savoir avant de commencer)
 - **Python de base** : variables, fonctions, classes, `import` ;
@@ -75,6 +75,7 @@
 
 🧰 **Bonnes pratiques à ce stade** :
 - commencer la matrice de traçabilité (besoin → cas) ;
+- remplir le README : section « Fonctionnalités » = liste des cas d'utilisation ;
 - faire un commit Git pour cette étape (message clair).
 
 🧵 **Fil rouge** : l'acteur **Visiteur** a le cas **« S'inscrire »**.
@@ -133,6 +134,17 @@ Deux outils :
 ## BOUCLE PAR NIVEAU — à répéter 3 fois (🥉 → 🥈 → 🥇)
 
 Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À partir d'ici, on exécute les étapes 4, 5, 6 **en boucle, une fois par niveau** :
+┌─ NIVEAU 🥉 DÉBUTANT ─────────────────────────────┐
+│ étape 4 (parties 🥉) → étape 5 (tests 🥉) → étape 6   │
+│ → backlog 🥉 → CODE de l'incrément → DoD ✅            │
+└────────────────────────────────────────────────────┘
+│  le code 🥉 reste fonctionnel
+▼
+┌─ NIVEAU 🥈 INTERMÉDIAIRE ── même boucle, parties 🥈 ──┐
+└────────────────────────────────────────────────────────┘
+▼
+┌─ NIVEAU 🥇 CONFIRMÉ ──────── même boucle, tout ────────┐
+└────────────────────────────────────────────────────────┘
 
 **Règle** : on ne passe au niveau suivant que quand le niveau courant respecte sa **Definition of Done** (code ✅ + test ✅ + doc ✅ + commit ✅). Le code d'un niveau **reste fonctionnel** quand on ajoute le suivant.
 
@@ -201,6 +213,7 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 🧰 **Bonnes pratiques à ce stade** :
 - commentaires « pourquoi, pas quoi » (le code dit quoi, le commentaire dit pourquoi) ;
 - constantes nommées pour les états (4.6) — pas de « magic numbers » ;
+- remplir le README : section « Structure du projet » = l'arborescence de l'étape 4 ;
 - commit Git de l'étape 4 (arborescence de fichiers créée).
 
 🧵 **Fil rouge** : pour « S'inscrire » → 4.1 table `utilisateurs` ; 4.3 contrainte `unique` sur email ; 4.5 classe `Utilisateur` ; 4.7 route `POST /api/auth/register` ; 4.8 module `auth.py` ; 4.10 gestionnaire d'erreur 409 ; 4.11 hachage du mot de passe.
@@ -239,6 +252,7 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 
 🧰 **Bonnes pratiques à ce stade** :
 - le test fait partie de la Definition of Done (voir étape 6) ;
+- remplir le README : section « Comment tester » (`pytest` + matrice des tests) ;
 - commit Git de l'étape 5 (message clair).
 
 🧵 **Fil rouge** : le test du fil rouge est `test_register_email_deja_utilise` → attend une réponse **409**.
@@ -277,7 +291,7 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 
 🧰 **Bonnes pratiques à chaque incrément de code** :
 - **avant le tout premier code (niveau 🥉)** : créer `venv` + `requirements.txt` (chaque bibliothèque installée y est notée) ; au **niveau 🥈**, créer `.env` pour les secrets (clé JWT) — jamais de secret dans le code ;
-- **Definition of Done** : code ✅ + test (étape 5) ✅ + doc/README ✅ + commit Git ✅ — rien n'est « fini » sans les 4 ;
+- **Definition of Done** : code ✅ + test (étape 5) ✅ + README mis à jour ✅ (install, lancement, test, doc API de l'incrément) + commit Git ✅ — rien n'est « fini » sans les 4 ;
 - fonctions Python courtes (une seule chose, ~10-15 lignes max, sinon on découpe) ;
 - pas de « magic numbers » : les valeurs en dur deviennent des constantes nommées ;
 - docstring sur chaque fonction Python et chaque classe (1 ligne + entrées + sortie) ;
@@ -285,6 +299,7 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 - relecture croisée de 2 min avant de passer à l'incrément suivant.
 
 🧰 **En fin de projet** (niveau confirmé) :
+- README **complet** = livrable exigé par le CDC : installation, utilisation, description des fonctionnalités, documentation complète de l'API ;
 - matrice de traçabilité finale complète (chaque besoin du CDC couvert : besoin → cas → route → test → commit) ;
 - vérification des anti-patterns (pas de fonction de 100 lignes, pas d'imports circulaires, pas de logique métier mélangée au JSON).
 
@@ -293,6 +308,17 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 📝 **À retenir (3 lignes)** : 1) Étapes 0-3 globales, niveaux à partir de 4. 2) 🥉 → 🥈 → 🥇, un niveau par incrément. 3) DoD = code + test + doc + commit.
 
 ---
+
+## Ordre visuel récapitulatif
+cahier des charges
+│ (0) AFB   (1) use cases   (2) fonctions MÉTIER   (3) objets
+│          ← étapes 0-3 faites UNE SEULE FOIS, globalement
+▼
+┌─ BOUCLE ×3 : 🥉 DÉBUTANT → 🥈 INTERMÉDIAIRE → 🥇 CONFIRMÉ ──┐
+│  à chaque niveau :                                                │
+│   (4) conception du niveau  →  (5) tests du niveau  →            │
+│   (6) backlog du niveau → CODE incrémental → DoD ✅               │
+└───────────────────────────────────────────────────────────────────┘
 
 Version graphique (Mermaid) :
 
@@ -305,5 +331,65 @@ flowchart TD
     E3 --> B1["🥉 NIVEAU DÉBUTANT<br/>4: 4.1 4.5 4.7 4.8 4.10<br/>5: 1 test unitaire<br/>6: backlog 🥉 → CODE → DoD ✅"]
     B1 --> B2["🥈 NIVEAU INTERMÉDIAIRE<br/>4: + 4.3 4.4 4.6 4.11<br/>5: + intégration<br/>6: backlog 🥈 → CODE → DoD ✅"]
     B2 --> B3["🥇 NIVEAU CONFIRMÉ<br/>4: 4.1 à 4.11 toutes<br/>5: + régression<br/>6: backlog 🥇 → CODE → DoD ✅"]
+Glossaire (avec analogies du quotidien)
 
+Terme
 
+Définition simple
+
+Analogie
+
+Acteur
+Un rôle joué devant le système (Visiteur, Client, Admin) — pas une personne
+Un rôle dans une pièce de théâtre
+Cas d'utilisation
+Une action que fait un acteur (verbe à l'infinitif)
+Une scène du scénario
+Fonction métier
+Action globale du système (bloc F1–F4) — quoi le système fait
+Le titre d'un acte de la pièce
+Fonction Python
+Petit bloc de code qui transforme des données sans garder d'état entre les appels
+Une réplique calculée à la volée
+Objet
+Une chose du système (Commande, Produit) avec attributs et parfois un état
+Un personnage avec ses caractéristiques
+État
+La « situation » d'un objet à un moment T (en_attente, validée)
+L'humeur du personnage à ce moment
+Persistance
+Conserver des données au-delà d'une requête, même après redémarrage → base
+Le cahier (on écrit pour de bon) vs le brouillon jetable
+Route
+Point d'entrée HTTP de l'API (ex. POST /api/auth/login)
+Un guichet avec un panneau (méthode) et un formulaire (entrées)
+Blueprint
+Regroupement de routes Flask par domaine
+Un guichetier dédié à un service
+Contrat d'API
+Tableau de toutes les routes : méthodes, entrées, sorties, codes
+Le règlement affiché à l'entrée
+Test unitaire
+Test d'un seul élément isolé (une fonction/classe, un scénario)
+Répéter une seule réplique hors scène
+Test d'intégration
+Test de plusieurs modules ensemble (route + base + sécurité)
+La répétition générale avec toute la troupe
+Test de régression
+Relancer tous les tests existants après chaque modification
+Rejouer toute la pièce pour vérifier qu'aucun acte n'est cassé
+Backlog
+Liste ordonnée des étapes de code à réaliser
+La liste de courses priorisée
+Definition of Done (DoD)
+Incrément « fini » quand : code ✅ + test ✅ + doc ✅ + commit ✅
+La checklist avant de quitter la scène
+Definition of Ready
+Avant une étape : le livrable précédent existe et est commité
+On ne monte pas sur scène sans le décor précédent
+Commit
+Sauvegarde datée du code dans Git, avec un message clair
+Une photo de la scène avec la date
+Traçabilité
+Chaque élément vient de l'étape précédente (besoin → cas → route → test → commit)
+Chaque réplique trouve sa source dans le scénario
