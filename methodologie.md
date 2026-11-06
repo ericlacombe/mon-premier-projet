@@ -331,65 +331,27 @@ flowchart TD
     E3 --> B1["🥉 NIVEAU DÉBUTANT<br/>4: 4.1 4.5 4.7 4.8 4.10<br/>5: 1 test unitaire<br/>6: backlog 🥉 → CODE → DoD ✅"]
     B1 --> B2["🥈 NIVEAU INTERMÉDIAIRE<br/>4: + 4.3 4.4 4.6 4.11<br/>5: + intégration<br/>6: backlog 🥈 → CODE → DoD ✅"]
     B2 --> B3["🥇 NIVEAU CONFIRMÉ<br/>4: 4.1 à 4.11 toutes<br/>5: + régression<br/>6: backlog 🥇 → CODE → DoD ✅"]
-Glossaire (avec analogies du quotidien)
 
-Terme
-
-Définition simple
-
-Analogie
-
-Acteur
-Un rôle joué devant le système (Visiteur, Client, Admin) — pas une personne
-Un rôle dans une pièce de théâtre
-Cas d'utilisation
-Une action que fait un acteur (verbe à l'infinitif)
-Une scène du scénario
-Fonction métier
-Action globale du système (bloc F1–F4) — quoi le système fait
-Le titre d'un acte de la pièce
-Fonction Python
-Petit bloc de code qui transforme des données sans garder d'état entre les appels
-Une réplique calculée à la volée
-Objet
-Une chose du système (Commande, Produit) avec attributs et parfois un état
-Un personnage avec ses caractéristiques
-État
-La « situation » d'un objet à un moment T (en_attente, validée)
-L'humeur du personnage à ce moment
-Persistance
-Conserver des données au-delà d'une requête, même après redémarrage → base
-Le cahier (on écrit pour de bon) vs le brouillon jetable
-Route
-Point d'entrée HTTP de l'API (ex. POST /api/auth/login)
-Un guichet avec un panneau (méthode) et un formulaire (entrées)
-Blueprint
-Regroupement de routes Flask par domaine
-Un guichetier dédié à un service
-Contrat d'API
-Tableau de toutes les routes : méthodes, entrées, sorties, codes
-Le règlement affiché à l'entrée
-Test unitaire
-Test d'un seul élément isolé (une fonction/classe, un scénario)
-Répéter une seule réplique hors scène
-Test d'intégration
-Test de plusieurs modules ensemble (route + base + sécurité)
-La répétition générale avec toute la troupe
-Test de régression
-Relancer tous les tests existants après chaque modification
-Rejouer toute la pièce pour vérifier qu'aucun acte n'est cassé
-Backlog
-Liste ordonnée des étapes de code à réaliser
-La liste de courses priorisée
-Definition of Done (DoD)
-Incrément « fini » quand : code ✅ + test ✅ + doc ✅ + commit ✅
-La checklist avant de quitter la scène
-Definition of Ready
-Avant une étape : le livrable précédent existe et est commité
-On ne monte pas sur scène sans le décor précédent
-Commit
-Sauvegarde datée du code dans Git, avec un message clair
-Une photo de la scène avec la date
+| Terme | Définition simple | Analogie |
+|---|---|---|
+| **Acteur** | Un rôle joué devant le système (Visiteur, Client, Admin) — pas une personne | Un rôle dans une pièce de théâtre |
+| **Cas d'utilisation** | Une action que fait un acteur (verbe à l'infinitif) | Une scène du scénario |
+| **Fonction métier** | Action globale du système (bloc F1–F4) — *quoi* le système fait | Le titre d'un acte de la pièce |
+| **Fonction Python** | Petit bloc de code qui transforme des données sans garder d'état entre les appels | Une réplique calculée à la volée |
+| **Objet** | Une chose du système (Commande, Produit) avec attributs et parfois un état | Un personnage avec ses caractéristiques |
+| **État** | La « situation » d'un objet à un moment T (en_attente, validée) | L'humeur du personnage à ce moment |
+| **Persistance** | Conserver des données au-delà d'une requête, même après redémarrage → base | Le cahier (on écrit pour de bon) vs le brouillon jetable |
+| **Route** | Point d'entrée HTTP de l'API (ex. POST /api/auth/login) | Un guichet avec un panneau (méthode) et un formulaire (entrées) |
+| **Blueprint** | Regroupement de routes Flask par domaine | Un guichetier dédié à un service |
+| **Contrat d'API** | Tableau de toutes les routes : méthodes, entrées, sorties, codes | Le règlement affiché à l'entrée |
+| **Test unitaire** | Test d'un seul élément isolé (une fonction/classe, un scénario) | Répéter une seule réplique hors scène |
+| **Test d'intégration** | Test de plusieurs modules ensemble (route + base + sécurité) | La répétition générale avec toute la troupe |
+| **Test de régression** | Relancer tous les tests existants après chaque modification | Rejouer toute la pièce pour vérifier qu'aucun acte n'est cassé |
+| **Backlog** | Liste ordonnée des étapes de code à réaliser | La liste de courses priorisée |
+| **Definition of Done (DoD)** | Incrément « fini » quand : code ✅ + test ✅ + doc ✅ + commit ✅ | La checklist avant de quitter la scène |
+| **Definition of Ready** | Avant une étape : le livrable précédent existe et est commité | On ne monte pas sur scène sans le décor précédent |
+| **Commit** | Sauvegarde datée du code dans Git, avec un message clair | Une photo de la scène avec la date |
+| **Traçabilité** | Chaque élément vient de l'étape précédente (besoin → cas → route → test → commit) | Chaque réplique trouve sa source dans le scénario |
 Traçabilité
 Chaque élément vient de l'étape précédente (besoin → cas → route → test → commit)
 Chaque réplique trouve sa source dans le scénario
