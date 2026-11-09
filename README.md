@@ -26,7 +26,25 @@
 Liens : Utilisateur 1—N Commande · Categorie 1—N Produit · Produit 1—N LigneCommande · Commande 1—N LigneCommande
 (détail complet dans `etape3-objets.md`, schéma ER + PK/FK/UK)
 
-## Fichiers du projet (étapes 0–3)
+## Structure du projet (étape 4, niveau 🥉)
+```
+app/
+├── app.py                  # point d'entrée Flask (app, engine, session, init données test, app.run)
+├── modelsSQLAlchemy.py     # Base + classe Utilisateur (SQLAlchemy pur, comme l'ancien projet)
+├── routes/
+│   └── auth.py             # blueprint auth_bp : POST /api/auth/register
+└── tests/
+    └── test_auth.py        # test_register_email_deja_utilise
+digimarket.db               # base SQLite (table users)
+requirements.txt            # flask, sqlalchemy, pytest
+```
+
+## Comment tester (étape 5)
+```bash
+pytest            # lance tous les tests (ici : test_register_email_deja_utilise → 409)
+```
+
+## Fichiers du projet (étapes 0–5)
 | Fichier | Description |
 |---|---|
 | `attentes.md` | Cahier des charges de l'exercice (DigiMarket) |
@@ -36,4 +54,6 @@ Liens : Utilisateur 1—N Commande · Categorie 1—N Produit · Produit 1—N L
 | `etape1-use-cases.md` | Étape 1 : acteurs, cas d'utilisation, matrice des rôles |
 | `etape2-fonctions-metier.md` | Étape 2 : fonctions métier F1–F4 + flux « Passer une commande » |
 | `etape3-objets.md` | Étape 3 : schéma ER (5 objets, PK/FK/UK), cycle de vie de Commande |
+| `etape4-conception-debutant.md` | Étape 4 niveau 🥉 : base, classe, route, module, erreurs (fil rouge) |
+| `etape5-tests-debutant.md` | Étape 5 niveau 🥉 : 1 test unitaire (409 email déjà pris) |
 | `README.md` | Ce fichier |
