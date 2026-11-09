@@ -1,16 +1,16 @@
 """
 tests/test_auth.py — Tests du niveau 🥉 (fil rouge « S'inscrire »).
 
-Lancer depuis le dossier app/ :  pytest
+Lancer depuis la racine du projet :  pytest
 """
 
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app import app                    # l'application Flask
-from modelsSQLAlchemy import Base, User  # les modèles
-import routes.auth as auth_module      # pour brancher une session de test
+from app.app import app                    # l'application Flask
+from app.modelsSQLAlchemy import Base, User  # les modèles
+import app.routes.auth as auth_module      # pour brancher une session de test
 
 
 @pytest.fixture

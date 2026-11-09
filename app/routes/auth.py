@@ -10,8 +10,8 @@ Route disponible :
 from flask import Blueprint, request, jsonify
 from werkzeug.security import generate_password_hash   # hachage (inclus avec Flask)
 
-from db import session                # session partagée
-from modelsSQLAlchemy import User     # modèle
+from app.db import session                # session partagée
+from app.modelsSQLAlchemy import User     # modèle
 
 # Le blueprint regroupe les routes du domaine "auth", préfixées /api/auth
 auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")

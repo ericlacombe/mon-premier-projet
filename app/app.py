@@ -9,15 +9,15 @@ Lancer depuis le dossier app/ :  python app.py
 
 from flask import Flask
 
-from db import session                      # session partagée (db.py)
-from modelsSQLAlchemy import User           # modèle
+from app.db import session                      # session partagée (db.py)
+from app.modelsSQLAlchemy import User           # modèle
 
 app = Flask(__name__)
 
 # ------------------------------------------------------------------
 # Blueprints (routes) — ici seulement auth pour le niveau 🥉
 # ------------------------------------------------------------------
-from routes.auth import auth_bp            # blueprint F1 « Gérer les comptes »
+from app.routes.auth import auth_bp            # blueprint F1 « Gérer les comptes »
 app.register_blueprint(auth_bp)            # les routes seront sous /api/auth/...
 
 # ------------------------------------------------------------------

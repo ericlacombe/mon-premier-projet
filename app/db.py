@@ -8,7 +8,7 @@ la même session sans import circulaire.
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from modelsSQLAlchemy import Base
+from app.modelsSQLAlchemy import Base
 
 # 'sqlite:///digimarket.db' : fichier SQLite local (créé automatiquement)
 engine = create_engine("sqlite:///digimarket.db", echo=False)

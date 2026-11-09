@@ -33,14 +33,15 @@ Liens : Utilisateur 1—N Commande · Categorie 1—N Produit · Produit 1—N L
 mon-premier-projet/
 ├── README.md                   # ce fichier (page d'entrée)
 ├── requirements.txt            # flask, sqlalchemy, pytest
-├── app/
-│   ├── app.py                  # point d'entrée Flask (app, blueprint, app.run)
+├── app/                        # 💻 code de l'API (package Python)
+│   ├── __init__.py
+│   ├── app.py                  # point d'entrée Flask (app, blueprints, app.run)
 │   ├── db.py                   # engine SQLite + session partagée (SQLAlchemy pur)
 │   ├── modelsSQLAlchemy.py     # Base + classe User (table users)
-│   ├── routes/
-│   │   └── auth.py             # blueprint auth_bp : POST /api/auth/register
-│   └── tests/
-│       └── test_auth.py        # test_register_email_deja_utilise (409)
+│   └── routes/
+│       └── auth.py             # blueprint auth_bp : POST /api/auth/register
+├── tests/                      # 🧪 dossier dédié aux tests
+│   └── test_auth.py            # test_register_email_deja_utilise (409)
 └── docs/                       # 📚 toute la documentation
     ├── attentes.md             # cahier des charges
     ├── methodologie.md         # la méthode (étapes 0–6 + niveaux)
@@ -54,12 +55,12 @@ mon-premier-projet/
 python -m venv venv                # crée un environnement virtuel isolé (dossier venv/) : les bibliothèques du projet n'installent PAS dans ton Python global
 source venv/bin/activate           # active cet environnement (Windows : venv\Scripts\activate) — toutes les commandes suivantes (pip, python) l'utilisent
 pip install -r requirements.txt    # installe toutes les bibliothèques listées dans requirements.txt (flask, sqlalchemy, pytest) — la "liste de courses" du projet : mêmes versions pour tout le monde
-cd app && python app.py            # lance l'API sur http://127.0.0.1:5000
+python -m app.app               # lance l'API sur http://127.0.0.1:5000 (depuis la racine)
 ```
 
 ## Comment tester (étape 5)
 ```bash
-pytest            # lance tous les tests (ici : test_register_email_deja_utilise → 409)
+pytest            # depuis la racine : lance tous les tests (ici : tests/test_auth.py → 409)
 ```
 
 ## Fichiers du projet (étapes 0–6, niveau 🥉)
@@ -80,5 +81,5 @@ pytest            # lance tous les tests (ici : test_register_email_deja_utilise
 | `app/db.py` | Moteur SQLite + session partagée |
 | `app/modelsSQLAlchemy.py` | Modèle User (table users) |
 | `app/routes/auth.py` | Route POST /api/auth/register |
-| `app/tests/test_auth.py` | Test 409 email déjà pris |
+| `tests/test_auth.py` | 🧪 Test 409 email déjà pris |
 | `README.md` | Ce fichier |
