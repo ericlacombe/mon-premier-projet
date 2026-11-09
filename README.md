@@ -1,6 +1,6 @@
 # Mon premier projet — DigiMarket (API REST Flask)
 
-📖 **Méthode suivie** : ce projet suit la méthode décrite dans **[methodologie.md](methodologie.md)** (étapes 0–6 + niveaux 🥉🥈🥇). Les fichiers `etape0-AFB.md` … `etape6-backlog-debutant.md` sont **le résultat de chaque étape** de cette méthode (conception puis code).
+📖 **Méthode suivie** : ce projet suit la méthode décrite dans **[methodologie.md](docs/methodologie.md)** (étapes 0–6 + niveaux 🥉🥈🥇). Les fichiers `etape0-AFB.md` … `etape6-backlog-debutant.md` sont **le résultat de chaque étape** de cette méthode (conception puis code).
 
 ## Conventions (étape 0)
 - snake_case pour les variables et fonctions
@@ -31,19 +31,23 @@ Liens : Utilisateur 1—N Commande · Categorie 1—N Produit · Produit 1—N L
 ## Structure du projet (étape 4 → code étape 6, niveau 🥉)
 ```
 mon-premier-projet/
+├── README.md                   # ce fichier (page d'entrée)
 ├── requirements.txt            # flask, sqlalchemy, pytest
-├── digimarket.db               # base SQLite (créée au lancement)
-├── README.md, attentes.md, methodologie.md, methodologie-canva.mmd
-├── etape0-AFB.md … etape6-backlog-debutant.md   # étapes de la méthode
-└── app/
-    ├── app.py                  # point d'entrée Flask (app, blueprint, app.run)
-    ├── db.py                   # engine SQLite + session partagée (SQLAlchemy pur)
-    ├── modelsSQLAlchemy.py     # Base + classe User (table users)
-    ├── routes/
-    │   └── auth.py             # blueprint auth_bp : POST /api/auth/register
-    └── tests/
-        └── test_auth.py        # test_register_email_deja_utilise (409)
+├── app/
+│   ├── app.py                  # point d'entrée Flask (app, blueprint, app.run)
+│   ├── db.py                   # engine SQLite + session partagée (SQLAlchemy pur)
+│   ├── modelsSQLAlchemy.py     # Base + classe User (table users)
+│   ├── routes/
+│   │   └── auth.py             # blueprint auth_bp : POST /api/auth/register
+│   └── tests/
+│       └── test_auth.py        # test_register_email_deja_utilise (409)
+└── docs/                       # 📚 toute la documentation
+    ├── attentes.md             # cahier des charges
+    ├── methodologie.md         # la méthode (étapes 0–6 + niveaux)
+    ├── methodologie-canva.mmd  # schéma visuel (Mermaid)
+    └── etape0-AFB.md … etape6-backlog-debutant.md   # résultat de chaque étape
 ```
+(digimarket.db est créée automatiquement au lancement, à la racine)
 
 ## Installation et lancement (étape 6)
 ```bash
@@ -61,16 +65,16 @@ pytest            # lance tous les tests (ici : test_register_email_deja_utilise
 ## Fichiers du projet (étapes 0–6, niveau 🥉)
 | Fichier | Description |
 |---|---|
-| `attentes.md` | Cahier des charges de l'exercice (DigiMarket) |
-| `methodologie.md` | Méthode de travail en 6 étapes + 3 niveaux (🥉🥈🥇) — voir le lien en haut de ce README |
-| `methodologie-canva.mmd` | Schéma visuel (Mermaid) de la méthode |
-| `etape0-AFB.md` | Étape 0 : liste des besoins 🔵 et contraintes 🟠 |
-| `etape1-use-cases.md` | Étape 1 : acteurs, cas d'utilisation, matrice des rôles |
-| `etape2-fonctions-metier.md` | Étape 2 : fonctions métier F1–F4 + flux « Passer une commande » |
-| `etape3-objets.md` | Étape 3 : schéma ER (5 objets, PK/FK/UK), cycle de vie de Commande |
-| `etape4-conception-debutant.md` | Étape 4 niveau 🥉 : base, classe, route, module, erreurs (fil rouge) |
-| `etape5-tests-debutant.md` | Étape 5 niveau 🥉 : 1 test unitaire (409 email déjà pris) |
-| `etape6-backlog-debutant.md` | Étape 6 niveau 🥉 : backlog cochée, code fonctionnel (register + test) |
+| `docs/attentes.md` | Cahier des charges de l'exercice (DigiMarket) |
+| `docs/methodologie.md` | Méthode de travail en 6 étapes + 3 niveaux (🥉🥈🥇) — voir le lien en haut de ce README |
+| `docs/methodologie-canva.mmd` | Schéma visuel (Mermaid) de la méthode |
+| `docs/etape0-AFB.md` | Étape 0 : liste des besoins 🔵 et contraintes 🟠 |
+| `docs/etape1-use-cases.md` | Étape 1 : acteurs, cas d'utilisation, matrice des rôles |
+| `docs/etape2-fonctions-metier.md` | Étape 2 : fonctions métier F1–F4 + flux « Passer une commande » |
+| `docs/etape3-objets.md` | Étape 3 : schéma ER (5 objets, PK/FK/UK), cycle de vie de Commande |
+| `docs/etape4-conception-debutant.md` | Étape 4 niveau 🥉 : base, classe, route, module, erreurs (fil rouge) |
+| `docs/etape5-tests-debutant.md` | Étape 5 niveau 🥉 : 1 test unitaire (409 email déjà pris) |
+| `docs/etape6-backlog-debutant.md` | Étape 6 niveau 🥉 : backlog cochée, code fonctionnel (register + test) |
 | `requirements.txt` | Dépendances (flask, sqlalchemy, pytest) |
 | `app/app.py` | Point d'entrée Flask |
 | `app/db.py` | Moteur SQLite + session partagée |
