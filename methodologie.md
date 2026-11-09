@@ -319,7 +319,8 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 - docstring sur chaque fonction Python et chaque classe (1 ligne + entrées + sortie) ;
 - **réutiliser les conventions de code déjà maîtrisées** : mêmes bibliothèques (ex. SQLAlchemy pur plutôt que Flask-SQLAlchemy), même structure de fichiers, mêmes commentaires (docstring d'en-tête, blocs `# ---`, commentaires en français) — on adapte, on ne recopie pas ;
 - test immédiat de la route avec un client HTTP (`curl`, Thunder Client) ;
-- relecture croisée de 2 min avant de passer à l'incrément suivant.
+- relecture croisée de 2 min avant de passer à l'incrément suivant ;
+- **backlog commenté** : chaque ligne du backlog a un commentaire expliquant pourquoi elle est là (d'où elle vient : étape 4/5, cas, partie 4.x) ;
 
 🧰 **En fin de projet** (niveau confirmé) :
 - README **complet** = livrable exigé par le CDC : installation, utilisation, description des fonctionnalités, documentation complète de l'API ;
