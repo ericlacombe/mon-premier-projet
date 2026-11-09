@@ -176,7 +176,7 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 
 ### Groupe A — Données (d'après l'étape 3)
 
-| Partie | Analyse (source) | Condition = résultat positif | Action menée |
+| Partie | Analyse (étape source) | Condition = résultat positif | Action menée |
 |---|---|---|---|
 | 4.1 Base de données | Modèle de données (3) | Un objet au moins doit être **persisté** : conserver ses valeurs au-delà d'une seule requête, même après redémarrage du serveur | **Création** de la base de données et de ses tables (schéma) |
 | 4.2 Données temporaires | Diagramme de flux (2) | Des données ne sont utiles que le temps d'une seule requête | **Création** d'une structure simple (`dict`/objet léger) — **pas de table** |
