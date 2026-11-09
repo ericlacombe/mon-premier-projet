@@ -26,17 +26,29 @@
 Liens : Utilisateur 1—N Commande · Categorie 1—N Produit · Produit 1—N LigneCommande · Commande 1—N LigneCommande
 (détail complet dans `etape3-objets.md`, schéma ER + PK/FK/UK)
 
-## Structure du projet (étape 4, niveau 🥉)
+## Structure du projet (étape 4 → code étape 6, niveau 🥉)
 ```
-app/
-├── app.py                  # point d'entrée Flask (app, engine, session, init données test, app.run)
-├── modelsSQLAlchemy.py     # Base + classe Utilisateur (SQLAlchemy pur, comme l'ancien projet)
-├── routes/
-│   └── auth.py             # blueprint auth_bp : POST /api/auth/register
-└── tests/
-    └── test_auth.py        # test_register_email_deja_utilise
-digimarket.db               # base SQLite (table users)
-requirements.txt            # flask, sqlalchemy, pytest
+mon-premier-projet/
+├── requirements.txt            # flask, sqlalchemy, pytest
+├── digimarket.db               # base SQLite (créée au lancement)
+├── README.md, attentes.md, methodologie.md, methodologie-canva.mmd
+├── etape0-AFB.md … etape6-backlog-debutant.md   # étapes de la méthode
+└── app/
+    ├── app.py                  # point d'entrée Flask (app, blueprint, app.run)
+    ├── db.py                   # engine SQLite + session partagée (SQLAlchemy pur)
+    ├── modelsSQLAlchemy.py     # Base + classe User (table users)
+    ├── routes/
+    │   └── auth.py             # blueprint auth_bp : POST /api/auth/register
+    └── tests/
+        └── test_auth.py        # test_register_email_deja_utilise (409)
+```
+
+## Installation et lancement (étape 6)
+```bash
+python -m venv venv
+source venv/bin/activate        # Windows : venv\Scripts\activate
+pip install -r requirements.txt
+cd app && python app.py         # API sur http://127.0.0.1:5000
 ```
 
 ## Comment tester (étape 5)
@@ -44,7 +56,7 @@ requirements.txt            # flask, sqlalchemy, pytest
 pytest            # lance tous les tests (ici : test_register_email_deja_utilise → 409)
 ```
 
-## Fichiers du projet (étapes 0–5)
+## Fichiers du projet (étapes 0–6, niveau 🥉)
 | Fichier | Description |
 |---|---|
 | `attentes.md` | Cahier des charges de l'exercice (DigiMarket) |
@@ -56,4 +68,11 @@ pytest            # lance tous les tests (ici : test_register_email_deja_utilise
 | `etape3-objets.md` | Étape 3 : schéma ER (5 objets, PK/FK/UK), cycle de vie de Commande |
 | `etape4-conception-debutant.md` | Étape 4 niveau 🥉 : base, classe, route, module, erreurs (fil rouge) |
 | `etape5-tests-debutant.md` | Étape 5 niveau 🥉 : 1 test unitaire (409 email déjà pris) |
+| `etape6-backlog-debutant.md` | Étape 6 niveau 🥉 : backlog cochée, code fonctionnel (register + test) |
+| `requirements.txt` | Dépendances (flask, sqlalchemy, pytest) |
+| `app/app.py` | Point d'entrée Flask |
+| `app/db.py` | Moteur SQLite + session partagée |
+| `app/modelsSQLAlchemy.py` | Modèle User (table users) |
+| `app/routes/auth.py` | Route POST /api/auth/register |
+| `app/tests/test_auth.py` | Test 409 email déjà pris |
 | `README.md` | Ce fichier |
