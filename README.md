@@ -45,10 +45,10 @@ mon-premier-projet/
 
 ## Installation et lancement (étape 6)
 ```bash
-python -m venv venv
-source venv/bin/activate            # Windows : venv\Scripts\activate
-pip install -r requirements.txt     # installe toutes les bibliothèques listées dans requirements.txt (flask, sqlalchemy, pytest) — c'est la "liste de courses" du projet : tout le monde a les mêmes versions
-cd app && python app.py             # lance l'API sur http://127.0.0.1:5000
+python -m venv venv                # crée un environnement virtuel isolé (dossier venv/) : les bibliothèques du projet n'installent PAS dans ton Python global
+source venv/bin/activate           # active cet environnement (Windows : venv\Scripts\activate) — toutes les commandes suivantes (pip, python) l'utilisent
+pip install -r requirements.txt    # installe toutes les bibliothèques listées dans requirements.txt (flask, sqlalchemy, pytest) — la "liste de courses" du projet : mêmes versions pour tout le monde
+cd app && python app.py            # lance l'API sur http://127.0.0.1:5000
 ```
 
 ## Comment tester (étape 5)
