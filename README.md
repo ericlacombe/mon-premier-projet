@@ -58,6 +58,26 @@ mon-premier-projet/
 ```
 (digimarket.db est créée automatiquement au lancement, à la racine)
 
+## Fonctionnement d'une requête (exemple : POST /api/auth/register)
+```
+client HTTP
+  POST /api/auth/register
+        │
+        ▼
+app/app.py        Flask + blueprint enregistré
+        │
+        ▼
+routes/auth.py    endpoint register()  ──►  400 si champs manquants
+        │                                  409 si email déjà pris
+        ▼
+db.py             session SQLAlchemy
+        │
+        ▼
+digimarket.db     table users  (modèle User défini dans modelsSQLAlchemy.py)
+        │
+        └── retour ──► réponse JSON 201
+```
+
 ## Installation et lancement (étape 6)
 ```bash
 python -m venv venv                # crée un environnement virtuel isolé (dossier venv/) : les bibliothèques du projet n'installent PAS dans ton Python global
