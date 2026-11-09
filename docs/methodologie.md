@@ -322,6 +322,7 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 - relecture croisée de 2 min avant de passer à l'incrément suivant ;
 - **backlog commenté** : chaque ligne du backlog a un commentaire expliquant pourquoi elle est là (d'où elle vient : étape 4/5, cas, partie 4.x) ;
 - mettre à jour le README avec la **liste à puces des fichiers résultat de chaque étape** (avec un lien vers chaque fichier) ;
+- écrire dans le README le **flux d'une requête en ASCII** (schéma texte, ex. une route POST) ;
 
 🧰 **En fin de projet** (niveau confirmé) :
 - README **complet** = livrable exigé par le CDC : installation, utilisation, description des fonctionnalités, documentation complète de l'API ;
