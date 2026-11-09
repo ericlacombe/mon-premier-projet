@@ -1,5 +1,7 @@
 # Mon premier projet — DigiMarket (API REST Flask)
 
+📖 **Méthode suivie** : ce projet suit la méthode décrite dans **[methodologie.md](methodologie.md)** (étapes 0–6 + niveaux 🥉🥈🥇). Les fichiers `etape0-AFB.md` … `etape6-backlog-debutant.md` sont **le résultat de chaque étape** de cette méthode (conception puis code).
+
 ## Conventions (étape 0)
 - snake_case pour les variables et fonctions
 - PascalCase pour les classes
@@ -60,7 +62,7 @@ pytest            # lance tous les tests (ici : test_register_email_deja_utilise
 | Fichier | Description |
 |---|---|
 | `attentes.md` | Cahier des charges de l'exercice (DigiMarket) |
-| `methodologie.md` | Méthode de travail en 6 étapes + 3 niveaux (🥉🥈🥇) |
+| `methodologie.md` | Méthode de travail en 6 étapes + 3 niveaux (🥉🥈🥇) — voir le lien en haut de ce README |
 | `methodologie-canva.mmd` | Schéma visuel (Mermaid) de la méthode |
 | `etape0-AFB.md` | Étape 0 : liste des besoins 🔵 et contraintes 🟠 |
 | `etape1-use-cases.md` | Étape 1 : acteurs, cas d'utilisation, matrice des rôles |
