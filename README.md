@@ -46,9 +46,9 @@ mon-premier-projet/
 ## Installation et lancement (étape 6)
 ```bash
 python -m venv venv
-source venv/bin/activate        # Windows : venv\Scripts\activate
-pip install -r requirements.txt
-cd app && python app.py         # API sur http://127.0.0.1:5000
+source venv/bin/activate            # Windows : venv\Scripts\activate
+pip install -r requirements.txt     # installe toutes les bibliothèques listées dans requirements.txt (flask, sqlalchemy, pytest) — c'est la "liste de courses" du projet : tout le monde a les mêmes versions
+cd app && python app.py             # lance l'API sur http://127.0.0.1:5000
 ```
 
 ## Comment tester (étape 5)
