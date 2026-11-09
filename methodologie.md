@@ -54,7 +54,7 @@
 
 *Le reste est transféré : `.gitignore` se crée en même temps que le dépôt ; `venv` + `requirements.txt` → étape 6, juste avant le 1er code (niveau 🥉) ; `.env` pour les secrets (clé JWT) → étape 6, niveau 🥈 quand la sécurité (4.11) arrive.*
 
-🧵 **Fil rouge** : le besoin suivi est « l'utilisateur s'inscrit avec une adresse unique » 🔵.
+🧵 **Fil rouge** : le besoin suivi est « l'utilisateur s'inscrire avec une adresse unique » 🔵.
 ❓ **Auto-évaluation** : 1) Citez un besoin et une contrainte du CDC. 2) Pourquoi séparer les deux ? 3) Que risque-t-on si on saute cette étape ?
 📝 **À retenir (3 lignes)** : 1) Un besoin = une phrase, ce que veut l'utilisateur. 2) Une contrainte = imposé (techno, délai). 3) On ne code jamais avant d'avoir cette liste.
 
@@ -191,6 +191,7 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 - **4.3** — exemples : email unique → contrainte `unique` + erreur `409` ; prix négatif → validation + erreur `400`.
 - **4.4** — exemple : Utilisateur 1—N Commandes → clé étrangère `utilisateur_id` + `relationship`.
 - **4.5** — une classe par objet **persistants uniquement** : attributs (colonnes) + méthodes (comportements). Un objet temporaire (4.2) n'a pas de classe.
+  *Pourquoi une classe ?* Parce que l'objet a un **état persistant** : il doit vivre en base au-delà d'une seule requête → on crée une classe. (Un objet temporaire, ex. le token décodé, n'en a pas.)
 - **4.6** — exemple : `Commande.valider()` ; constantes `EN_ATTENTE = "en_attente"`… ; contrôle par rôle (lien 4.11).
 
 ### Groupe B — Comportement (d'après les étapes 1 et 2)
@@ -205,6 +206,7 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 
 💡 **Explications du Groupe B** :
 - **4.7** — le **contrat d'API** = tableau de chaque route (méthode HTTP, chemin, entrées JSON, sorties JSON, codes de retour). Analogie : une route = un guichet avec un panneau (méthode) et un formulaire (entrées).
+  *Pourquoi une route ?* Pour relier une **requête URL** (ex. `POST /api/auth/register`) à un **endpoint** (la fonction Python) où le code est appelé : la route = l'URL + la méthode HTTP, l'endpoint = la fonction exécutée.
 
   **La condition de la partie 4.7 : « le système est une API »**
 
