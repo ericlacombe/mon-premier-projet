@@ -29,6 +29,8 @@
 - 🚨 **Signaux d'alerte** : bloqué plus de ~20-30 min sur une étape → relire l'exemple ou demander de l'aide. C'est normal.
 - 🧰 **Bonnes pratiques** propres à chaque étape : indiquées en clair sous chaque étape.
 - 🧵 **Fil rouge** : à chaque étape, on suit UN exemple concret de bout en bout : *« un utilisateur s'inscrit »*.
+- 📖 **Relecture systématique** : avant de commencer CHAQUE étape, relire ENTIER son descriptif (question, outil, sortie, checklist ✅, piège ⚠️, 🧰 bonnes pratiques, 🧵 fil rouge) — ne jamais commencer une étape « de mémoire ».
+- 🧰 **README à jour** : à chaque étape, vérifier que la section correspondante du README est remplie (étape 1 = Fonctionnalités, étape 4 = Structure, étape 5 = Comment tester, étape 6 = install/lancement/doc API).
 
 ---
 
@@ -281,7 +283,8 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 ## ÉTAPE 6 — Backlog (ordre d'écriture du code) : trois niveaux
 ⏱️ **variable (c'est le codage) — moyenne**
 
-**Question** : dans quel ordre j'écris le code pour que chaque étape soit testable ?
+**Règle de départ** : à l'étape 6, on crée et on valide d'abord le **BACKLOG** (lignes cochables et testables) avant d'écrire une seule ligne de code.
+
 **Principe** : à chaque niveau (🥉 débutant → 🥈 intermédiaire → 🥇 confirmé), on exécute la boucle **étape 4 → étape 5 → étape 6** : conception du niveau → tests du niveau → backlog du niveau → **code de l'incrément**. **Chaque ligne du backlog doit être cochable et testable seule ; après chaque incrément le code reste fonctionnel ; on ne change pas de niveau tant que la DoD du niveau courant n'est pas validée** (code ✅ + test ✅ + doc ✅ + commit ✅), et on ne mélange jamais deux niveaux dans le même incrément.
 
 ### 🥉 Niveau DÉBUTANT — l'essentiel uniquement
