@@ -1,6 +1,14 @@
 # Mon premier projet — DigiMarket (API REST Flask)
 
-📖 **Méthode suivie** : ce projet suit la méthode décrite dans **[methodologie.md](docs/methodologie.md)** (étapes 0–6 + niveaux 🥉🥈🥇). Les fichiers `etape0-AFB.md` … `etape6-backlog-debutant.md` sont **le résultat de chaque étape** de cette méthode (conception puis code).
+📖 **Méthode suivie** : ce projet suit la méthode décrite dans **[methodologie.md](docs/methodologie.md)** (étapes 0–6 + niveaux 🥉🥈🥇). Chaque fichier ci-dessous est **le résultat d'une étape** de cette méthode (conception puis code) :
+
+- Étape 0 — AFB (besoins) → [docs/etape0-AFB.md](docs/etape0-AFB.md)
+- Étape 1 — use cases → [docs/etape1-use-cases.md](docs/etape1-use-cases.md)
+- Étape 2 — fonctions métier → [docs/etape2-fonctions-metier.md](docs/etape2-fonctions-metier.md)
+- Étape 3 — objets (schéma ER) → [docs/etape3-objets.md](docs/etape3-objets.md)
+- Étape 4 — conception 🥉 → [docs/etape4-conception-debutant.md](docs/etape4-conception-debutant.md)
+- Étape 5 — tests 🥉 → [docs/etape5-tests-debutant.md](docs/etape5-tests-debutant.md)
+- Étape 6 — backlog + code 🥉 → [docs/etape6-backlog-debutant.md](docs/etape6-backlog-debutant.md)
 
 ## Conventions (étape 0)
 - snake_case pour les variables et fonctions
