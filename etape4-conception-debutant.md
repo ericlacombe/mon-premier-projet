@@ -13,36 +13,40 @@ Niveau 🥉 = seules les parties **4.1, 4.5, 4.7 (1 route), 4.8, 4.10 basique** 
 Création de la base SQLite `digimarket.db` et de la table `utilisateurs` :
 
 ```sql
+-- Table des comptes utilisateurs (objet Utilisateur persisté, étape 3)
 CREATE TABLE utilisateurs (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    email VARCHAR(255) NOT NULL UNIQUE,
-    mot_de_passe_hash VARCHAR(255) NOT NULL,
-    nom VARCHAR(100) NOT NULL,
-    prenom VARCHAR(100) NOT NULL,
-    adresse TEXT,
-    role VARCHAR(20) NOT NULL DEFAULT 'client'
+    id INTEGER PRIMARY KEY AUTOINCREMENT,       -- PK : identifiant unique, auto-incrémenté
+    email VARCHAR(255) NOT NULL UNIQUE,          -- UK + obligatoire : un seul compte par email
+    mot_de_passe_hash VARCHAR(255) NOT NULL,     -- mot de passe JAMAIS en clair, toujours haché
+    nom VARCHAR(100) NOT NULL,                   -- obligatoire
+    prenom VARCHAR(100) NOT NULL,                -- obligatoire
+    adresse TEXT,                                -- optionnelle
+    role VARCHAR(20) NOT NULL DEFAULT 'client'  -- 'client' par défaut, 'admin' pour les administrateurs
 );
 ```
 
 ## 4.5 — Classe `Utilisateur` (condition : objet avec état persistant ✅ → ACTION)
 
 ```python
-# models/utilisateur.py
-from flask_sqlalchemy import SQLAlchemy
+# modelsSQLAlchemy.py (extrait) — même style que le projet précédent (SQLAlchemy pur, pas Flask-SQLAlchemy)
+# Pourquoi une classe ? Parce que l'objet Utilisateur a un état PERSISTANT :
+# il doit vivre en base au-delà d'une seule requête (règle 4.5) → on crée une classe.
+# (Un objet temporaire, ex. le token JWT décodé, n'aurait PAS de classe — règle 4.2.)
+from sqlalchemy import Column, Integer, String, Text
 
-db = SQLAlchemy()
+class Utilisateur(Base):                                  # Base = declarative_base(), définie dans modelsSQLAlchemy.py
+    __tablename__ = "utilisateurs"                        # nom de la table en base
 
-class Utilisateur(db.Model):
-    """Objet persisté : un compte utilisateur (étape 3)."""
-    __tablename__ = "utilisateurs"
+    id = Column(Integer, primary_key=True)                # PK : id unique, auto-incrémenté
+    email = Column(String(255), unique=True, nullable=False)   # UK : unicité de l'email garantie en base
+    mot_de_passe_hash = Column(String(255), nullable=False)    # hash du mot de passe, jamais en clair
+    nom = Column(String(100), nullable=False)             # obligatoire
+    prenom = Column(String(100), nullable=False)          # obligatoire
+    adresse = Column(Text)                                # optionnelle
+    role = Column(String(20), nullable=False, default="client")  # 'client' par défaut, 'admin' sinon
 
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), unique=True, nullable=False)
-    mot_de_passe_hash = db.Column(db.String(255), nullable=False)
-    nom = db.Column(db.String(100), nullable=False)
-    prenom = db.Column(db.String(100), nullable=False)
-    adresse = db.Column(db.Text)
-    role = db.Column(db.String(20), nullable=False, default="client")  # 'client' | 'admin'
+    def __repr__(self):                                   # affichage lisible avec print()
+        return f"<Utilisateur {self.email}>"
 ```
 
 ## 4.7 — La route du fil rouge : `POST /api/auth/register` (condition : API REST ✅ → ACTION)
@@ -59,15 +63,17 @@ from flask import Blueprint, request, jsonify
 
 auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 
-@auth_bp.route("/register", methods=["POST"])
-def register():
+# Pourquoi une route ? Pour relier une requête URL (ici POST /api/auth/register)
+# à un endpoint (la fonction register ci-dessous) où le code est appelé.
+@auth_bp.route("/register", methods=["POST"])     # la route = l'URL + la méthode HTTP (le "panneau du guichet")
+def register():                                    # l'endpoint = la fonction exécutée quand on atteint cette URL
     """F1 « Gérer les comptes » : inscrit un nouvel utilisateur (fil rouge)."""
-    data = request.get_json() or {}
-    # 4.10 : erreurs basiques en JSON
+    data = request.get_json() or {}                # corps JSON de la requête ({} si vide)
+    # 4.10 : si un champ obligatoire manque → erreur 400 renvoyée en JSON
     if not data.get("email") or not data.get("mot_de_passe"):
-        return jsonify({"erreur": "email et mot_de_passe requis"}), 400
-    # ... création de l'Utilisateur en base ...
-    return jsonify({"message": "utilisateur créé", "email": data["email"]}), 201
+        return jsonify({"erreur": "email et mot_de_passe requis"}), 400   # réponse JSON + code HTTP 400
+    # ... création de l'Utilisateur en base (session.add + commit) ...
+    return jsonify({"message": "utilisateur créé", "email": data["email"]}), 201  # 201 = ressource créée
 ```
 
 ## 4.10 — Gestion des erreurs basiques (condition : branches d'erreur du flux ✅ → ACTION)
