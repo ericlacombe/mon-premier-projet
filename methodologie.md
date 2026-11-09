@@ -230,6 +230,7 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 - commentaires « pourquoi, pas quoi » (le code dit quoi, le commentaire dit pourquoi) ;
 - constantes nommées pour les états (4.6) — pas de « magic numbers » ;
 - remplir le README : section « Structure du projet » = l'arborescence de l'étape 4 ;
+- choisir l'arborescence de fichiers **compatible avec les conventions déjà utilisées** dans d'autres projets (ex. modèles SQLAlchemy dans un fichier séparé `modelsSQLAlchemy.py`, routes par blueprint…) ;
 - commit Git de l'étape 4 (arborescence de fichiers créée).
 
 🧵 **Fil rouge** : pour « S'inscrire » → 4.1 table `utilisateurs` ; 4.3 contrainte `unique` sur email ; 4.5 classe `Utilisateur` ; 4.7 route `POST /api/auth/register` ; 4.8 module `auth.py` ; 4.10 gestionnaire d'erreur 409 ; 4.11 hachage du mot de passe.
@@ -311,6 +312,7 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 - fonctions Python courtes (une seule chose, ~10-15 lignes max, sinon on découpe) ;
 - pas de « magic numbers » : les valeurs en dur deviennent des constantes nommées ;
 - docstring sur chaque fonction Python et chaque classe (1 ligne + entrées + sortie) ;
+- **réutiliser les conventions de code déjà maîtrisées** : mêmes bibliothèques (ex. SQLAlchemy pur plutôt que Flask-SQLAlchemy), même structure de fichiers, mêmes commentaires (docstring d'en-tête, blocs `# ---`, commentaires en français) — on adapte, on ne recopie pas ;
 - test immédiat de la route avec un client HTTP (`curl`, Thunder Client) ;
 - relecture croisée de 2 min avant de passer à l'incrément suivant.
 
