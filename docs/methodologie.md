@@ -31,6 +31,7 @@
 - 🧵 **Fil rouge** : à chaque étape, on suit UN exemple concret de bout en bout : *« un utilisateur s'inscrit »*.
 - 📖 **Relecture systématique** : avant de commencer CHAQUE étape, relire ENTIER son descriptif (question, outil, sortie, checklist ✅, piège ⚠️, 🧰 bonnes pratiques, 🧵 fil rouge) — ne jamais commencer une étape « de mémoire ».
 - 🧰 **README à jour** : à chaque étape, vérifier que la section correspondante du README est remplie (étape 1 = Fonctionnalités, étape 4 = Structure, étape 5 = Comment tester, étape 6 = install/lancement/doc API).
+- 🗺️ **Canva de la structure à jour** : quand la structure des fichiers change (README « Structure du projet »), mettre à jour AUSSI le canva `docs/canva-structure-*.mmd` — **un canva par niveau, jamais écrasé** : `canva-structure-debutant.mmd`, puis `-intermediaire.mmd`, puis `-confirme.mmd`.
 
 ---
 
@@ -234,6 +235,7 @@ Les étapes 0 à 3 viennent d'être faites **une seule fois, globalement**. À p
 - commentaires « pourquoi, pas quoi » (le code dit quoi, le commentaire dit pourquoi) ;
 - constantes nommées pour les états (4.6) — pas de « magic numbers » ;
 - remplir le README : section « Structure du projet » = l'arborescence de l'étape 4 ;
+- mettre à jour aussi le canva de la structure (`docs/canva-structure-*.mmd`, un fichier par niveau, sans écraser l'ancien) ;
 - choisir l'arborescence de fichiers **compatible avec les conventions déjà utilisées** dans d'autres projets (ex. modèles SQLAlchemy dans un fichier séparé `modelsSQLAlchemy.py`, routes par blueprint…) ;
 - commit Git de l'étape 4 (arborescence de fichiers créée).
 
@@ -322,6 +324,7 @@ Objectif : un petit code fonctionnel rapidement, sans que les fonctions essentie
 - relecture croisée de 2 min avant de passer à l'incrément suivant ;
 - **backlog commenté** : chaque ligne du backlog a un commentaire expliquant pourquoi elle est là (d'où elle vient : étape 4/5, cas, partie 4.x) ;
 - mettre à jour le README avec la **liste à puces des fichiers résultat de chaque étape** (avec un lien vers chaque fichier) ;
+- si la structure des fichiers change : mettre à jour le README (arborescence) ET ajouter le canva du niveau courant (`docs/canva-structure-<niveau>.mmd`) sans écraser les canva précédents ;
 - écrire dans le README le **flux d'une requête en ASCII** (schéma texte, ex. une route POST) ;
 
 🧰 **En fin de projet** (niveau confirmé) :
