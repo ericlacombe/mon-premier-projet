@@ -58,6 +58,8 @@ mon-premier-projet/
 ```
 (digimarket.db est créée automatiquement au lancement, à la racine)
 
+📊 Cette structure est illustrée dans le canva **[docs/canva-structure.mmd](docs/canva-structure.mmd)** (niveau 🥉 débutant).
+
 ## Fonctionnement d'une requête (exemple : POST /api/auth/register)
 ```
 client HTTP
