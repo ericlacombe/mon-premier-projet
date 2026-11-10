@@ -2,7 +2,10 @@
 modelsSQLAlchemy.py — Modèles SQLAlchemy (ORM) pour DigiMarket.
 
 Niveau 🥉 : uniquement la table users (fil rouge « S'inscrire »).
-Aucun code d'exécution : importer ce fichier ne touche pas à la base de données.
+Ce fichier définit (sous forme de classes) les modèles des tables de la base SQL qui seront importés par ;
+-le script (execution des opéartions CRUD) 
+-l'API Flask (qui contient les endpoints)
+Aucun code d'exécution : importer ce fichier ne déclenche aucune opération en base de données.
 Même style que l'ancien projet (SQLAlchemy pur, pas Flask-SQLAlchemy).
 """
 
