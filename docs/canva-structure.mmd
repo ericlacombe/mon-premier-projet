@@ -1,0 +1,44 @@
+%% Canva de la structure de fichiers — mon-premier-projet (DigiMarket)
+%% À rendre sur https://mermaid.live  (les flèches pointillées = les imports entre fichiers Python)
+flowchart TB
+    ROOT["mon-premier-projet/"]
+
+    ROOT --> README["README.md<br/>page d'entrée, install, tests"]
+    ROOT --> REQ["requirements.txt<br/>flask, sqlalchemy, pytest"]
+
+    subgraph APP["app/ — code de l'API (package Python)"]
+        A_APP["app.py<br/>Flask, blueprints, app.run"]
+        A_DB["db.py<br/>engine SQLite + session"]
+        A_MODELS["modelsSQLAlchemy.py<br/>Base + classe User (table users)"]
+        A_ROUTES["routes/auth.py<br/>blueprint auth_bp, POST /api/auth/register"]
+    end
+
+    subgraph TESTS["tests/ — tests"]
+        T_AUTH["test_auth.py<br/>test_register_email_deja_utilise (409)"]
+    end
+
+    subgraph DOCS["docs/ — documentation"]
+        D_ATT["attentes.md<br/>cahier des charges"]
+        D_MET["methodologie.md<br/>la méthode 0-6"]
+        D_CANVA["methodologie-canva.mmd<br/>canva de la méthode"]
+        D_ETAPES["etape0 … etape6<br/>résultat de chaque étape"]
+    end
+
+    ROOT --> APP
+    ROOT --> TESTS
+    ROOT --> DOCS
+
+    %% imports entre fichiers Python (qui importe qui)
+    A_APP -.->|"auth_bp"| A_ROUTES
+    A_APP -.->|"session"| A_DB
+    A_APP -.->|"User"| A_MODELS
+    A_DB -.->|"Base"| A_MODELS
+    A_ROUTES -.->|"session + User"| A_DB
+    A_ROUTES -.->|"User"| A_MODELS
+    T_AUTH -.->|"app"| A_APP
+    T_AUTH -.->|"Base, User"| A_MODELS
+    T_AUTH -.->|"auth_module"| A_ROUTES
+
+    style APP fill:#e8f4ff,stroke:#3b82f6
+    style TESTS fill:#f0fdf4,stroke:#22c55e
+    style DOCS fill:#fdf2f8,stroke:#ec4899
