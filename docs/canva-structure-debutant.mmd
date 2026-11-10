@@ -1,43 +1,44 @@
-%% Canva de la structure de fichiers — mon-premier-projet (DigiMarket) — NIVEAU 🥉 DÉBUTANT
-%% À rendre sur https://mermaid.live  (les flèches pointillées = les imports entre fichiers Python)
+%% Canva structure de fichiers - mon-premier-projet - NIVEAU DEBUTANT
+%% Rendu : copier ce bloc sur https://mermaid.live
+%% Legende : fleche pleine = arborescence (dossier contient fichier)
+%%           fleche pointillee + texte = import Python (le texte = le nom importe)
 flowchart TB
-    ROOT["mon-premier-projet/ — niveau 🥉 débutant"]
+    ROOT["mon-premier-projet - niveau debutant"]
 
-    ROOT --> README["README.md<br/>page d'entrée, install, tests"]
-    ROOT --> REQ["requirements.txt<br/>flask, sqlalchemy, pytest"]
+    ROOT --> README["README.md"]
+    ROOT --> REQ["requirements.txt"]
 
-    subgraph APP["app/ — code de l'API (package Python)"]
-        A_APP["app.py<br/>Flask, blueprints, app.run"]
-        A_DB["db.py<br/>engine SQLite + session"]
-        A_MODELS["modelsSQLAlchemy.py<br/>Base + classe User (table users)"]
-        A_ROUTES["routes/auth.py<br/>blueprint auth_bp, POST /api/auth/register"]
+    subgraph APP["app - code API"]
+        A_APP["app.py - Flask blueprints run"]
+        A_DB["db.py - engine session"]
+        A_MODELS["modelsSQLAlchemy.py - Base User"]
+        A_ROUTES["routes/auth.py - POST /api/auth/register"]
     end
 
-    subgraph TESTS["tests/ — tests"]
-        T_AUTH["test_auth.py<br/>test_register_email_deja_utilise (409)"]
+    subgraph TESTS["tests - tests"]
+        T_AUTH["test_auth.py"]
     end
 
-    subgraph DOCS["docs/ — documentation"]
-        D_ATT["attentes.md<br/>cahier des charges"]
-        D_MET["methodologie.md<br/>la méthode 0-6"]
-        D_CANVA["methodologie-canva.mmd<br/>canva de la méthode"]
-        D_ETAPES["etape0 … etape6<br/>résultat de chaque étape"]
+    subgraph DOCS["docs - documentation"]
+        D_ATT["attentes.md"]
+        D_MET["methodologie.md"]
+        D_CANVA["methodologie-canva.mmd"]
+        D_ETAPES["etape0 a etape6"]
     end
 
     ROOT --> APP
     ROOT --> TESTS
     ROOT --> DOCS
 
-    %% imports entre fichiers Python (qui importe qui)
-    A_APP -.->|"auth_bp"| A_ROUTES
-    A_APP -.->|"session"| A_DB
-    A_APP -.->|"User"| A_MODELS
-    A_DB -.->|"Base"| A_MODELS
-    A_ROUTES -.->|"session + User"| A_DB
-    A_ROUTES -.->|"User"| A_MODELS
-    T_AUTH -.->|"app"| A_APP
-    T_AUTH -.->|"Base, User"| A_MODELS
-    T_AUTH -.->|"auth_module"| A_ROUTES
+    A_APP -.->|auth_bp| A_ROUTES
+    A_APP -.->|session| A_DB
+    A_APP -.->|User| A_MODELS
+    A_DB -.->|Base| A_MODELS
+    A_ROUTES -.->|session User| A_DB
+    A_ROUTES -.->|User| A_MODELS
+    T_AUTH -.->|app| A_APP
+    T_AUTH -.->|Base User| A_MODELS
+    T_AUTH -.->|auth_module| A_ROUTES
 
     style APP fill:#e8f4ff,stroke:#3b82f6
     style TESTS fill:#f0fdf4,stroke:#22c55e
