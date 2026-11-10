@@ -3,7 +3,10 @@ modelsSQLAlchemy.py — Modèles SQLAlchemy (ORM) pour DigiMarket.
 
 Niveau 🥉 : uniquement la table users (fil rouge « S'inscrire »).
 Ce fichier définit (sous forme de classes) les modèles des tables de la base SQL, importés par :
-- app/app.py        (l'API Flask, qui contient les endpoints)
+- app/app.py          (l'API Flask : point d'entrée, blueprints, endpoints)
+- app/db.py           (moteur + session partagée, create_all)
+- app/routes/auth.py  (les routes, ex. POST /api/auth/register)
+- tests/test_auth.py  (les tests)
 - app/script_crud.py  (script CRUD standalone : opérations en console, à créer si besoin)
 Aucun code d'exécution : importer ce fichier ne déclenche aucune opération en base de données.
 Même style que l'ancien projet (SQLAlchemy pur, pas Flask-SQLAlchemy).
