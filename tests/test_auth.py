@@ -23,20 +23,24 @@ import app.routes.auth as auth_module
 
 
 @pytest.fixture
-def client():
-    """Client de test Flask + base SQLite en mémoire (jetable à chaque test)."""
+def client_http():
+    """Client HTTP de test Flask + base SQLite en mémoire (jetable à chaque test).
+
+    ⚠️ "client_http" = le client HTTP qui appelle l'API (app.test_client(),
+    comme curl) — PAS le rôle "Client" de la matrice des rôles (étape 1).
+    """
     engine = create_engine("sqlite:///:memory:")   # base en RAM, rien sur le disque
     Base.metadata.create_all(engine)                # crée la table users
     TestSession = sessionmaker(bind=engine)
     auth_module.session = TestSession()             # la route utilisera CETTE session
 
     app.config["TESTING"] = True                    # mode test : pas de vrai serveur
-    yield app.test_client()                         # le client qui appelle les routes
+    yield app.test_client()                         # le client HTTP qui appelle les routes
 
     Base.metadata.drop_all(engine)                  # nettoyage après le test
 
 
-def test_register_email_deja_utilise(client):
+def test_register_email_deja_utilise(client_http):
     """Scénario : inscrire 2 fois le même email → la 2e fois échoue en 409."""
     payload = {
         "email": "a@b.c",
@@ -46,7 +50,7 @@ def test_register_email_deja_utilise(client):
     }
 
     # 1er appel : inscription OK → 201
-    r1 = client.post("/api/auth/register", json=payload)
+    r1 = client_http.post("/api/auth/register", json=payload)
     assert r1.status_code == 201                    # assert = vérifie le résultat attendu
 
     # L'endpoint a bien CRÉÉ l'objet User en base (session.add + commit dans register)
@@ -57,6 +61,6 @@ def test_register_email_deja_utilise(client):
     assert user.password_hash != "secret"                   # le mot de passe est haché, jamais en clair
 
     # 2e appel, MÊME email → doit échouer → 409 (conflit, email unique)
-    r2 = client.post("/api/auth/register", json=payload)
+    r2 = client_http.post("/api/auth/register", json=payload)
     assert r2.status_code == 409
     assert r2.get_json()["error"] == "email déjà utilisé"
