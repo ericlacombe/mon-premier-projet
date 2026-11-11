@@ -74,8 +74,13 @@ def register():                                  # l'endpoint = cette fonction
             address=body.get("address", ""),
             role="client",                        # tout nouvel inscrit est client
         )
-        session.add(user)                         # marque l'objet pour insertion
-        session.commit()                          # valide en base
+        # session.add(user) : marque l'objet pour insertion — RIEN n'est encore écrit
+        # en base : l'objet est juste "suivi" par la session (état "pending")
+        session.add(user)
+        # session.commit() : valide DÉFINITIVEMENT en base → exécute le vrai
+        # INSERT INTO users (...) ; après ça, c'est écrit pour de bon
+        # (d'où le session.rollback() dans le except si une erreur survient)
+        session.commit()
 
         # 201 : ressource créée
         return jsonify({"message": "utilisateur créé", "email": user.email}), 201
