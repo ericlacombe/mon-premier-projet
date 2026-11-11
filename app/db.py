@@ -1,5 +1,7 @@
 """
 db.py — Moteur SQLite + session partagée (SQLAlchemy pur).
+Script standalone d'utilisation de SQLAlchemy (ORM) avec SQLite.
+Ce script executable permet d'executer des opérations via une session SQLAlchemy
 
 Pourquoi un module séparé ? Pour que app.py ET les routes (routes/auth.py)
 utilisent la MÊME session sans import circulaire :
@@ -15,10 +17,12 @@ from sqlalchemy import create_engine
 # sessionmaker   : fabrique de sessions (conversations avec la BDD)
 from sqlalchemy.orm import sessionmaker
 
+# Les modèles de tables de la base de données sont définis dans modelsSQLAlchemy.py
+# Importer ce fichier ne déclenche aucune opération en base (pas de code d'exécution)
 from app.modelsSQLAlchemy import Base   # la base des modèles (métadonnée des tables)
 
 # ------------------------------------------------------------------
-# 1. Création du moteur de connexion
+# 1. Création du moteur de connexion à la base de données
 # ------------------------------------------------------------------
 # 'sqlite:///digimarket.db' : URL de connexion.
 #   - "sqlite"  : pilote SQLite (fichier local, pas de serveur)
@@ -34,6 +38,7 @@ engine = create_engine("sqlite:///digimarket.db", echo=False)
 # (dans modelsSQLAlchemy.py). create_all(engine) envoie les ordres
 # "CREATE TABLE" si les tables n'existent pas encore. Sans danger :
 # les tables existantes ne sont pas recréées ni supprimées.
+# C'est ici que les tables vides sont créées.
 Base.metadata.create_all(engine)
 
 # ------------------------------------------------------------------
