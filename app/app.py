@@ -4,21 +4,35 @@ app.py — Point d'entrée de l'API DigiMarket (niveau 🥉).
 Flask + SQLAlchemy pur : on crée l'app, on enregistre le blueprint auth,
 puis on lance le serveur.
 
-Lancer depuis le dossier app/ :  python app.py
+Lancer depuis la racine du projet :  python -m app.app
 """
 
+# ------------------------------------------------------------------
+# Importations
+# ------------------------------------------------------------------
+# Flask : sert à créer l'application, UNE SEULE FOIS, ici : app = Flask(__name__)
 from flask import Flask
 
-from app.db import session                      # session partagée (db.py)
-from app.modelsSQLAlchemy import User           # modèle
+# session partagée (module db.py — tout le monde passe par db.py pour éviter
+# l'import circulaire : app.py importe routes/auth.py, donc auth.py ne peut pas
+# importer app.py)
+from app.db import session
+# modèle User (table users, défini dans modelsSQLAlchemy.py)
+from app.modelsSQLAlchemy import User
 
+# ------------------------------------------------------------------
+# Création de l'application Flask
+# ------------------------------------------------------------------
 app = Flask(__name__)
 
 # ------------------------------------------------------------------
 # Blueprints (routes) — ici seulement auth pour le niveau 🥉
 # ------------------------------------------------------------------
-from app.routes.auth import auth_bp            # blueprint F1 « Gérer les comptes »
-app.register_blueprint(auth_bp)            # les routes seront sous /api/auth/...
+# auth_bp : le blueprint défini dans routes/auth.py (fonction métier F1 « Gérer les comptes »)
+from app.routes.auth import auth_bp
+# register_blueprint : enregistre les routes du blueprint dans l'app
+# → elles seront accessibles sous /api/auth/... (ex. POST /api/auth/register)
+app.register_blueprint(auth_bp)
 
 # ------------------------------------------------------------------
 # Données de test : un compte admin si la base est vide
