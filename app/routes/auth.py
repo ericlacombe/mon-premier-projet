@@ -43,7 +43,7 @@ def register():                                  # l'endpoint = cette fonction
     Entrée (JSON) : {email, password, first_name, last_name, address?}
     Sorties : 201 créé · 400 champs manquants · 409 email déjà utilisé · 500 erreur
     rappels des imports flask:
-    - request : lire la requête entrante (ex. request.get_json() = le JSON envoyé)
+    - request : lire la requête entrante (ex. request.get_json() = le JSON envoyé par le client)
     - jsonify : renvoyer une réponse JSON (ex. jsonify({...}), 400)
     """
     try:
