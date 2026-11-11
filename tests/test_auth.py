@@ -49,6 +49,13 @@ def test_register_email_deja_utilise(client):
     r1 = client.post("/api/auth/register", json=payload)
     assert r1.status_code == 201                    # assert = vérifie le résultat attendu
 
+    # L'endpoint a bien CRÉÉ l'objet User en base (session.add + commit dans register)
+    assert auth_module.session.query(User).count() == 1     # exactement 1 utilisateur créé
+    user = auth_module.session.query(User).filter_by(email="a@b.c").first()
+    assert user is not None                                 # l'objet User existe bien en base
+    assert user.role == "client"                            # rôle par défaut à la création
+    assert user.password_hash != "secret"                   # le mot de passe est haché, jamais en clair
+
     # 2e appel, MÊME email → doit échouer → 409 (conflit, email unique)
     r2 = client.post("/api/auth/register", json=payload)
     assert r2.status_code == 409
