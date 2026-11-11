@@ -7,6 +7,7 @@ flowchart TB
 
     ROOT --> README["README.md"]
     ROOT --> REQ["requirements.txt"]
+    ROOT --> DBFILE["digimarket.db - base SQLite cree au lancement"]
 
     subgraph APP["app - code API"]
         A_APP["app.py - Flask blueprints run"]
@@ -34,6 +35,7 @@ flowchart TB
     A_APP -.->|session| A_DB
     A_APP -.->|User| A_MODELS
     A_DB -.->|Base| A_MODELS
+    A_DB -.->|"ecrit lit"| DBFILE
     A_ROUTES -.->|session User| A_DB
     A_ROUTES -.->|User| A_MODELS
     T_AUTH -.->|app| A_APP
