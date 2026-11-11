@@ -18,7 +18,11 @@ from sqlalchemy.orm import sessionmaker
 from app.app import app
 # Base (pour create_all/drop_all) et User (le modèle) définis dans modelsSQLAlchemy.py
 from app.modelsSQLAlchemy import Base, User
-# le module des routes auth : on va remplacer SA session par celle de test
+# auth_module = le module routes/auth.py importé sous ce nom.
+# Il sert de "poignée" : on va remplacer SA session (celle de db.py, liée à la
+# vraie base digimarket.db) par une session de test en mémoire — comme ça,
+# les session.add/commit de register() écrivent dans la base de TEST,
+# jamais dans la vraie base.
 import app.routes.auth as auth_module
 
 
@@ -39,7 +43,10 @@ def client_http():
     engine = create_engine("sqlite:///:memory:")   # base en RAM, rien sur le disque
     Base.metadata.create_all(engine)                # crée la table users
     TestSession = sessionmaker(bind=engine)
-    auth_module.session = TestSession()             # la route utilisera CETTE session
+    # On branche la session de TEST dans le module routes/auth :
+    # la route register() utilisera CETTE session (base en mémoire),
+    # pas la vraie session de app/db.py
+    auth_module.session = TestSession()
 
     app.config["TESTING"] = True                    # mode test : pas de vrai serveur
     # app.test_client() = le "navigateur/curl simulé" fourni par Flask :
