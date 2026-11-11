@@ -7,11 +7,23 @@ Route disponible :
   POST /api/auth/register  →  inscrit un nouvel utilisateur
 """
 
+# ------------------------------------------------------------------
+# Importations
+# ------------------------------------------------------------------
+# Pourquoi Blueprint et PAS Flask ici ? Flask sert à créer l'application
+# (une seule fois, dans app.py : app = Flask(__name__)). Un Blueprint regroupe
+# les routes d'un domaine (ici "auth") ; app.py l'enregistre ensuite avec
+# app.register_blueprint(auth_bp).
+# - request : lire la requête entrante (ex. request.get_json() = le JSON envoyé)
+# - jsonify : renvoyer une réponse JSON (ex. jsonify({...}), 400)
 from flask import Blueprint, request, jsonify
-from werkzeug.security import generate_password_hash   # hachage (inclus avec Flask)
+# generate_password_hash : hache le mot de passe (jamais stocké en clair) — inclus avec Flask
+from werkzeug.security import generate_password_hash
 
-from app.db import session                # session partagée
-from app.modelsSQLAlchemy import User     # modèle
+# session partagée (module db.py — évite l'import circulaire avec app.py)
+from app.db import session
+# modèle User (défini dans modelsSQLAlchemy.py, table users)
+from app.modelsSQLAlchemy import User
 
 # Le blueprint regroupe les routes du domaine "auth", préfixées /api/auth
 auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
