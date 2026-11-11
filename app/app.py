@@ -41,21 +41,27 @@ from app.routes.auth import auth_bp
 app.register_blueprint(auth_bp)
 
 # ------------------------------------------------------------------
-# Données de test : un compte admin si la base est vide
+# Données de DÉMO : un compte admin si la base est vide
 # ------------------------------------------------------------------
 def init_sample_data():
-    """Ajoute un admin de test si la table users est vide."""
+    """Ajoute un compte admin de DÉMO si la table users est vide.
+
+    Utilité : avoir un compte prêt pour essayer l'API À LA MAIN
+    (curl, navigateur, Thunder Client) sans passer par l'inscription.
+    Ce sont des données factices, PAS des tests automatisés
+    (les vrais tests sont dans tests/ et lancés avec pytest).
+    """
     if session.query(User).count() == 0:
         admin = User(
             email="admin@digimarket.fr",
-            password_hash="hash_de_test",   # en vrai : generate_password_hash(...)
+            password_hash="hash_de_demo",   # en vrai : generate_password_hash(...)
             first_name="Admin",
             last_name="Digi",
             role="admin",
         )
         session.add(admin)
         session.commit()
-        print("Données de test initialisées.")
+        print("Données de démo initialisées.")
 
 # ------------------------------------------------------------------
 # Point d'entrée : lance le serveur Flask
