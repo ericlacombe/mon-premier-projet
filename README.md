@@ -42,7 +42,7 @@ mon-premier-projet/
 ├── README.md                   # ce fichier (page d'entrée)
 ├── requirements.txt            # flask, sqlalchemy, pytest
 ├── app/                        # 💻 code de l'API (package Python)
-│   ├── __init__.py
+│   ├── __init__.py           # rend app/ importable comme package Python
 │   ├── app.py                  # point d'entrée Flask (app, blueprints, app.run)
 │   ├── db.py                   # engine SQLite + session partagée (SQLAlchemy pur)
 │   ├── modelsSQLAlchemy.py     # Base + classe User (table users)
@@ -107,6 +107,7 @@ pytest            # depuis la racine : lance tous les tests (ici : tests/test_au
 | `docs/etape5-tests-debutant.md` | Étape 5 niveau 🥉 : 1 test unitaire (409 email déjà pris) |
 | `docs/etape6-backlog-debutant.md` | Étape 6 niveau 🥉 : backlog cochée, code fonctionnel (register + test) |
 | `requirements.txt` | Dépendances (flask, sqlalchemy, pytest) |
+| `app/__init__.py` | Package Python (rend app/ importable depuis la racine) |
 | `app/app.py` | Point d'entrée Flask |
 | `app/db.py` | Moteur SQLite + session partagée |
 | `app/modelsSQLAlchemy.py` | Modèle User (table users) |
