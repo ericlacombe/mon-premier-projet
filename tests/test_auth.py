@@ -26,8 +26,15 @@ import app.routes.auth as auth_module
 def client_http():
     """Client HTTP de test Flask + base SQLite en mémoire (jetable à chaque test).
 
-    ⚠️ "client_http" = le client HTTP qui appelle l'API (app.test_client(),
-    comme curl) — PAS le rôle "Client" de la matrice des rôles (étape 1).
+    ⚠️ "client_http" = le client HTTP qui appelle l'API — PAS le rôle "Client"
+    de la matrice des rôles (étape 1).
+
+    Pourquoi une FONCTION avec @pytest.fixture ?
+    - @pytest.fixture = « fabrique quelque chose AVANT chaque test » ;
+    - la fonction prépare l'environnement (base en mémoire, session de test,
+      mode TESTING) puis YIELD le client prêt à l'emploi ;
+    - grâce au paramètre `def test_...(client_http):`, pytest injecte
+      automatiquement ce client dans le test.
     """
     engine = create_engine("sqlite:///:memory:")   # base en RAM, rien sur le disque
     Base.metadata.create_all(engine)                # crée la table users
@@ -35,7 +42,9 @@ def client_http():
     auth_module.session = TestSession()             # la route utilisera CETTE session
 
     app.config["TESTING"] = True                    # mode test : pas de vrai serveur
-    yield app.test_client()                         # le client HTTP qui appelle les routes
+    # app.test_client() = le "navigateur/curl simulé" fourni par Flask :
+    # c'est LUI qui fait les appels client_http.post("/api/auth/register", ...)
+    yield app.test_client()
 
     Base.metadata.drop_all(engine)                  # nettoyage après le test
 
