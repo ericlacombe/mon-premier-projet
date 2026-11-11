@@ -4,13 +4,22 @@ tests/test_auth.py — Tests du niveau 🥉 (fil rouge « S'inscrire »).
 Lancer depuis la racine du projet :  pytest
 """
 
+# ------------------------------------------------------------------
+# Importations
+# ------------------------------------------------------------------
+# pytest : le lanceur de tests (fixture @pytest.fixture, exécution avec `pytest`)
 import pytest
+# create_engine : crée un moteur SQLite EN MÉMOIRE (sqlite:///:memory:)
 from sqlalchemy import create_engine
+# sessionmaker : fabrique de sessions (ici pour la base de test en mémoire)
 from sqlalchemy.orm import sessionmaker
 
-from app.app import app                    # l'application Flask
-from app.modelsSQLAlchemy import Base, User  # les modèles
-import app.routes.auth as auth_module      # pour brancher une session de test
+# app : l'application Flask créée dans app/app.py (le point d'entrée)
+from app.app import app
+# Base (pour create_all/drop_all) et User (le modèle) définis dans modelsSQLAlchemy.py
+from app.modelsSQLAlchemy import Base, User
+# le module des routes auth : on va remplacer SA session par celle de test
+import app.routes.auth as auth_module
 
 
 @pytest.fixture
