@@ -35,11 +35,16 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 # Pourquoi une route ? Pour relier une requête URL (POST /api/auth/register)
 # à cet endpoint (la fonction register) où le code est exécuté.
 # ------------------------------------------------------------------
+
 @auth_bp.route("/register", methods=["POST"])   # la route = URL + méthode HTTP
 def register():                                  # l'endpoint = cette fonction
-    """Inscrit un nouvel utilisateur.
+   
+  """Inscrit un nouvel utilisateur.
     Entrée (JSON) : {email, password, first_name, last_name, address?}
     Sorties : 201 créé · 400 champs manquants · 409 email déjà utilisé · 500 erreur
+    rappels des imports flask:
+    - request : lire la requête entrante (ex. request.get_json() = le JSON envoyé)
+    - jsonify : renvoyer une réponse JSON (ex. jsonify({...}), 400)
     """
     try:
         body = request.get_json() or {}          # corps JSON de la requête ({} si vide)
