@@ -30,13 +30,14 @@ auth_bp = Blueprint("auth", __name__, url_prefix="/api/auth")
 
 
 # ------------------------------------------------------------------
+# Création d'une route pour enregister un nouvel utilisateur.
+#
 # Pourquoi une route ? Pour relier une requête URL (POST /api/auth/register)
 # à cet endpoint (la fonction register) où le code est exécuté.
 # ------------------------------------------------------------------
 @auth_bp.route("/register", methods=["POST"])   # la route = URL + méthode HTTP
 def register():                                  # l'endpoint = cette fonction
     """Inscrit un nouvel utilisateur.
-
     Entrée (JSON) : {email, password, first_name, last_name, address?}
     Sorties : 201 créé · 400 champs manquants · 409 email déjà utilisé · 500 erreur
     """
