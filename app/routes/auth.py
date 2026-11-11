@@ -5,6 +5,13 @@ Niveau 🥉 : une seule route, le fil rouge « S'inscrire ».
 
 Route disponible :
   POST /api/auth/register  →  inscrit un nouvel utilisateur
+
+Pourquoi un blueprint séparé et pas la route dans app.py ?
+- le CDC demande une organisation en modules fonctionnels (Blueprints) :
+  chaque domaine a son fichier (ici auth, plus tard produits.py, commandes.py) ;
+- app.py reste l'ASSEMBLAGE : il crée l'app et enregistre les blueprints
+  (register_blueprint) — il ne grossit pas à chaque nouvelle route ;
+- le préfixe /api/auth est groupé ici (url_prefix du blueprint).
 """
 
 # ------------------------------------------------------------------
