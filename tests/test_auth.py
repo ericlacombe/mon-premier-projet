@@ -50,7 +50,12 @@ def client_http():
 
 
 def test_register_email_deja_utilise(client_http):
-    """Scénario : inscrire 2 fois le même email → la 2e fois échoue en 409."""
+    """Scénario testé : inscrire 2 fois le même email → la 2e fois échoue en 409.
+
+    Règle du test (étape 5) : 1 élément testé (la route POST /api/auth/register)
+    + UN scénario + le résultat attendu (409) — le nom du test dit tout ça.
+    """
+    # Le corps JSON envoyé à la route = les "entrées" du contrat d'API (étape 4)
     payload = {
         "email": "a@b.c",
         "password": "secret",
@@ -58,18 +63,20 @@ def test_register_email_deja_utilise(client_http):
         "last_name": "Martin",
     }
 
-    # 1er appel : inscription OK → 201
+    # 1er appel : inscription OK → 201 Created (la ressource "utilisateur" est créée)
     r1 = client_http.post("/api/auth/register", json=payload)
-    assert r1.status_code == 201                    # assert = vérifie le résultat attendu
+    # assert = vérifie le résultat attendu ; si faux, le test échoue ici
+    assert r1.status_code == 201
 
     # L'endpoint a bien CRÉÉ l'objet User en base (session.add + commit dans register)
     assert auth_module.session.query(User).count() == 1     # exactement 1 utilisateur créé
     user = auth_module.session.query(User).filter_by(email="a@b.c").first()
     assert user is not None                                 # l'objet User existe bien en base
     assert user.role == "client"                            # rôle par défaut à la création
-    assert user.password_hash != "secret"                   # le mot de passe est haché, jamais en clair
+    assert user.password_hash != "secret"                   # mot de passe haché, jamais en clair
 
-    # 2e appel, MÊME email → doit échouer → 409 (conflit, email unique)
+    # 2e appel, MÊME email → doit échouer → 409 Conflict (contrainte unique sur users.email)
     r2 = client_http.post("/api/auth/register", json=payload)
     assert r2.status_code == 409
+    # le corps de la réponse d'erreur est bien en JSON avec le bon message
     assert r2.get_json()["error"] == "email déjà utilisé"
