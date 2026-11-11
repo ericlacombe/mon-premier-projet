@@ -67,5 +67,10 @@ def init_sample_data():
 # Point d'entrée : lance le serveur Flask
 # ------------------------------------------------------------------
 if __name__ == "__main__":
-    init_sample_data()     # données de test seulement au lancement direct
+    # Ce bloc ne s'exécute QUE au lancement direct (python -m app.app) :
+    # quand le fichier est importé ailleurs (ex. tests : from app.app import app),
+    # __name__ vaut "app.app" et non "__main__" → le bloc est ignoré.
+    # → les données de démo sont créées dans la vraie base UNIQUEMENT au
+    #   démarrage du serveur, jamais pendant les tests (base en mémoire).
+    init_sample_data()
     app.run(debug=True)
