@@ -5,6 +5,12 @@ Flask + SQLAlchemy pur : on crée l'app, on enregistre le blueprint auth,
 puis on lance le serveur.
 
 Lancer depuis la racine du projet :  python -m app.app
+
+Pourquoi app.py n'a pas les routes directement ? app.py est l'ASSEMBLAGE :
+il crée l'app (Flask) et enregistre les blueprints (register_blueprint).
+Les endpoints vivent dans routes/*.py (un blueprint par domaine fonctionnel,
+comme l'exige le CDC) — ainsi app.py reste petit et chaque domaine a son fichier
+(ici routes/auth.py, plus tard routes/produits.py, routes/commandes.py).
 """
 
 # ------------------------------------------------------------------
